@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import flet as ft
 from color import *
+from views.home_view.alert_dialog import HomeDialog
 
 
 @dataclass
@@ -123,34 +124,3 @@ class HomeView:
 
     def open_dlg_modal(self, e):
         HomeDialog(e).open_dialog()
-
-
-@dataclass
-class HomeDialog:
-    e: any
-
-    def __post_init__(self):
-        self._set_dialog()
-
-    def open_dialog(self):
-        self.e.control.page.overlay.append(self.dialog)
-        self.dialog.open = True
-        self.e.control.page.update()
-
-    def _set_dialog(self) -> None:
-        self.dialog = ft.AlertDialog(
-            modal=True,
-            title=ft.Text("Please confirm"),
-            content=ft.Text(value="Testing Alert Dialog"),
-            actions=[
-                ft.TextButton("Yes", on_click=self._close_dlg),
-                ft.TextButton("No", on_click=self._close_dlg),
-            ],
-            actions_alignment=ft.MainAxisAlignment.END,
-            on_dismiss=lambda e: print("Modal dialog dismissed!"),
-        )
-    
-
-    def _close_dlg(self, e):
-        self.dialog.open = False
-        e.control.page.update()

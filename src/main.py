@@ -1,6 +1,6 @@
 import flet as ft
 from color import *
-from views.home_view import HomeView
+from views.home_view.view import HomeView 
 from views.profile_view import ProfileView
 from views.shop_view import ShopView
 from views.stat_view import StatView
