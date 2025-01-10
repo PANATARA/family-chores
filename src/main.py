@@ -20,6 +20,15 @@ def create_bottom_appbar(total_height):
 
 
 def main(page: ft.Page):
+    page.theme = ft.Theme(
+        page_transitions=ft.PageTransitionsTheme(
+            android=ft.PageTransitionTheme.NONE,
+            ios=ft.PageTransitionTheme.NONE,
+            macos=ft.PageTransitionTheme.NONE,
+            linux=ft.PageTransitionTheme.NONE,
+            windows=ft.PageTransitionTheme.NONE
+        )
+    )
     total_height = page.height
     total_width = page.width
     bottom_appbar_height = total_height * 0.11
