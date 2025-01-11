@@ -43,7 +43,7 @@ def main(page: ft.Page):
         profile_page.show()
 
     def home(e):
-        home_page = HomeView(page, bottom_bar, first_card_height, main_board_height)
+        home_page = HomeView(page, bottom_bar, total_height-bottom_appbar_height)
         home_page.show()
 
     def shop(e):
@@ -83,7 +83,7 @@ def main(page: ft.Page):
         )
     )
 
-    home_page = HomeView(page, bottom_bar, first_card_height, main_board_height)
+    home_page = HomeView(page, bottom_bar, total_height-bottom_appbar_height)
     home_page.show()
 
 ft.app(main)
