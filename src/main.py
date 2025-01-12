@@ -1,9 +1,10 @@
 import flet as ft
 from color import *
 from views.home_view.view import HomeView 
-from views.profile_view import ProfileView
-from views.shop_view import ShopView
-from views.stat_view import StatView
+from views.profile_view.view import ProfileView
+from views.shop_view.view import ShopView
+from views.stat_view.view import StatView
+
 
 
 def create_bottom_appbar(total_height):
@@ -32,9 +33,7 @@ def main(page: ft.Page):
     total_height = page.height
     total_width = page.width
     bottom_appbar_height = total_height * 0.11
-    first_card_height = total_width / 2
-    main_board_height = total_height - bottom_appbar_height - 20 - total_width / 2
-
+    
     bottom_bar = create_bottom_appbar(total_height)
 
 
