@@ -1,6 +1,7 @@
 import flet as ft
 from color import *
 from config.database import create_db_and_tables
+from views.auth_view.view import AuthView
 from views.home_view.view import HomeView 
 from views.profile_view.view import ProfileView
 from views.shop_view.view import ShopView
@@ -9,7 +10,6 @@ from views.stat_view.view import StatView
 
 
 def create_bottom_appbar(total_height):
-    create_db_and_tables()
     return ft.BottomAppBar(
         bgcolor="#6C91C2",
         shape=ft.NotchShape.CIRCULAR,
@@ -84,8 +84,11 @@ def main(page: ft.Page):
         )
     )
 
-    home_page = HomeView(page, bottom_bar, total_height-bottom_appbar_height)
-    home_page.show()
+    # home_page = HomeView(page, bottom_bar, total_height-bottom_appbar_height)
+    # home_page.show()
+
+    auth_page = AuthView(page)
+    auth_page.show()
 
 ft.app(main)
 

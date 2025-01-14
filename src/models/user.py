@@ -1,3 +1,4 @@
+import bcrypt
 from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Date, ForeignKey
@@ -16,3 +17,14 @@ class UserBase(Base):
 
     family_id: Mapped[int] = mapped_column(ForeignKey("Family.id"), nullable=True)
     family: Mapped["Family"] = relationship("Family", back_populates="members") # type: ignore
+
+    password: Mapped[str]
+    token: Mapped[str]
+
+    def set_password(self, raw_password: str) -> None:
+        salt = bcrypt.gensalt()
+        hashed_password = bcrypt.hashpw(raw_password.encode('utf-8'), salt)
+        self.password = hashed_password.decode('utf-8')
+
+    def check_password(self, raw_password: str) -> bool:
+        return bcrypt.checkpw(raw_password.encode('utf-8'), self.password.encode('utf-8'))
