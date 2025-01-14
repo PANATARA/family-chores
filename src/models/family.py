@@ -12,4 +12,4 @@ class FamilyBase(Base):
     title: Mapped[str] = mapped_column(String(60))
     slogan: Mapped[str] = mapped_column(String(300))
 
-    members: Mapped[list["User"]] = relationship("User", back_populates="family") # type: ignore
+    members: Mapped[list["UserBase"]] = relationship("UserBase", back_populates="family") # type: ignore

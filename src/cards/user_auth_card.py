@@ -1,21 +1,21 @@
 import flet as ft
 from color import *
-from service.auth_service.registration import RegisterUser
+from service.auth.registration import RegisterUser
+
 
 def custom_text_field(label: str, is_pass: bool) -> ft.TextField:
     return ft.TextField(
-                hint_text=label,
-                password=is_pass,
-                border=ft.InputBorder.UNDERLINE,
-
+        hint_text=label,
+        password=is_pass,
+        border=ft.InputBorder.UNDERLINE,
     )
+
 
 username_field = custom_text_field("username", False)
 first_name_field = custom_text_field("first name", False)
 last_name_field = custom_text_field("last_name", False)
 password_field = custom_text_field("password", True)
 password_again_field = custom_text_field("password again", True)
-
 
 
 def sign_up(e):
@@ -27,7 +27,7 @@ def sign_up(e):
 
     if password != password_again:
         print("REGISTRATION FAILED")
-    
+
     RegisterUser(
         username=username,
         password=password,
@@ -35,53 +35,47 @@ def sign_up(e):
         last_name=last_name,
     )()
 
-def registration_card(height):
+
+def registration_card():
     return ft.Card(
         content=ft.Container(
             padding=10,
             alignment=ft.alignment.center,
-            height=height,
             content=ft.Column(
                 controls=[
-                    ft.Text(
-                        value="Sign Up"
-                    ),
+                    ft.Text(value="Sign Up"),
                     username_field,
                     first_name_field,
                     last_name_field,
                     password_field,
                     password_again_field,
-                    ft.Button(
-                        text="Sign Up",
-                        on_click=sign_up
-                    )
-                    
+                    ft.Button(text="Sign Up", on_click=sign_up),
                 ]
-            )
+            ),
         ),
         color=ft.colors.WHITE38,
     )
 
-def authorization_card(height):
+
+def sign_in(e):
+    pass
+
+def authorization_card():
     return ft.Card(
         content=ft.Container(
             padding=10,
             alignment=ft.alignment.center,
-            height=height,
             content=ft.Column(
                 controls=[
-                    ft.Text(
-                        value="Sign in"
-                    ),
+                    ft.Text(value="Sign in"),
                     username_field,
                     password_field,
                     ft.Button(
                         text="Sign in",
-                        on_click=sign_up
-                    )
+                        on_click=sign_in,
+                    ),
                 ]
-            )
+            ),
         ),
         color=ft.colors.WHITE38,
     )
-

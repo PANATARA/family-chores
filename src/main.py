@@ -90,5 +90,6 @@ def main(page: ft.Page):
     auth_page = AuthView(page)
     auth_page.show()
 
-ft.app(main)
-
+if __name__ == "__main__":
+    create_db_and_tables()
+    ft.app(main)
